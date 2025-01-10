@@ -2,9 +2,9 @@ from rest_framework import serializers
 from .models import taskManager
 
 class taskSerializer(serializers.ModelSerializer):
-	username = serializer.CharField(source='user.name', read_only=True)
-	email = serializer.EmailField(source='user.email', read_only=True)
-	password = serializer.CharField(write_only=True)
+	username = serializers.CharField(source='user.name', read_only=True)
+	email = serializers.EmailField(source='user.email', read_only=True)
+	password = serializers.CharField(write_only=True)
 # define aditional fields
 	class Meta:
 		model = taskManager
