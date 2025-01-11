@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class taskManager(models.Model):
 	LOW = 1
@@ -20,6 +20,6 @@ class taskManager(models.Model):
 		default=LOW,
 	)
 	Status = models.BooleanField(default=False)
-
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	def __str__(self):
 		return self.title
