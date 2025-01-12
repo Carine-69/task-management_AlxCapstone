@@ -75,36 +75,194 @@ python manage.py runserver
 
 Access the app at http://127.0.0.1:8000/ in your browser.
 
-Models
+1   register:
 
-Task Model:
+Method: POST
 
-class Task(models.Model):
-    LOW = 1
-    MEDIUM = 2
-    HIGH = 3
+URL = http://127.0.0.1:8000/auth/register/
+ 
+Body, Raw, Json =
 
-    PRIORITY_CHOICES = [
-        (LOW, 'low'),
-        (MEDIUM, 'medium'),
-        (HIGH, 'high'),
-    ]
+{ "username": "Annick", "email": "newstudent@example.com", "password": "password123456" }
 
-    STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('in_progress', 'In Progress'),
-        ('completed', 'Completed'),
-    ]
+Send  (id =3)
 
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    due_date = models.DateTimeField()
-    priority_level = models.PositiveIntegerField(choices=PRIORITY_CHOICES, default=LOW)
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='pending')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
 
-    def __str__(self):
-        return self.title
+2  login:
+
+Method: POST
+
+URL=  http://127.0.0.1:8000/auth/login/
+
+Body, Raw, Json =
+{ "username": "Umutoni", "password": "password456" }
+ 
+Access and refresh tokens will be generated you want to make sure that you save them
+
+
+3. Create task:
+
+Method: POST
+
+URL= http://127.0.0.1:8000/tasks/
+
+ Go to authorization, choose Bearer token  INSERT ACCESS TOKEN
+
+Body, Raw, Json=
+
+{
+  "title": "Postman Guide Task",
+  "Description": "Write a guide to help users understand how to use Postman with Django API.",
+  "user": 3,
+  "task_name": "Write Postman Guide",
+  "due_date": "2025-01-20"}
+}
+
+Send
+
+Edit Body, Raw, Json=
+{
+  "title": "Driving test",
+  "Description": "Driving test to get driver’s licence.",
+  "user": 3,
+  "task_name": "Driving licence test",
+  "due_date": "2025-03-20"}
+}
+
+4 Read:
+Method: GET
+URL= http://127.0.0.1:8000/tasks/
+
+Send 
+
+5 Update a task:
+
+Method: PUT
+
+URL= http://127.0.0.1:8000/tasks/1/
+
+1 is the ID or number of the task
+
+Meaning it is our first task= 
+
+{
+  "Title":”alx capstone project",
+  "Description": "Test crud operations of alx capstone with postman.",
+  "user": 3,
+  "task_name": "updated to Task management ",
+  "due_date": "2025-01-12"}
+}
+
+
+Send
+
+
+
+6 delete a task:
+
+Method: DELETE
+
+URL = http://127.0.0.1:8000/tasks/2/
+
+
+I choose to delete task 2
+Send 
+
+Quick example on how to perfom CRUD operations in postman:
+
+1   register:
+
+Method: POST
+
+URL = http://127.0.0.1:8000/auth/register/
+ 
+Body, Raw, Json =
+
+{ "username": "Annick", "email": "newstudent@example.com", "password": "password123456" }
+
+Send  (id =3)
+
+
+2  login:
+
+Method: POST
+
+URL=  http://127.0.0.1:8000/auth/login/
+
+Body, Raw, Json =
+{ "username": "Umutoni", "password": "password456" }
+ 
+Access and refresh tokens will be generated you want to make sure that you save them
+
+
+3. Create task:
+
+Method: POST
+
+URL= http://127.0.0.1:8000/tasks/
+
+ Go to authorization, choose Bearer token  INSERT ACCESS TOKEN
+
+Body, Raw, Json=
+
+{
+  "title": "Postman Guide Task",
+  "Description": "Write a guide to help users understand how to use Postman with Django API.",
+  "user": 3,
+  "task_name": "Write Postman Guide",
+  "due_date": "2025-01-20"}
+}
+
+Send
+
+Edit Body, Raw, Json=
+{
+  "title": "Driving test",
+  "Description": "Driving test to get driver’s licence.",
+  "user": 3,
+  "task_name": "Driving licence test",
+  "due_date": "2025-03-20"}
+}
+
+4 Read:
+Method: GET
+URL= http://127.0.0.1:8000/tasks/
+
+Send 
+
+5 Update a task:
+
+Method: PUT
+
+URL= http://127.0.0.1:8000/tasks/1/
+
+1 is the ID or number of the task
+
+Meaning it is our first task= 
+
+{
+  "Title":”alx capstone project",
+  "Description": "Test crud operations of alx capstone with postman.",
+  "user": 3,
+  "task_name": "updated to Task management ",
+  "due_date": "2025-01-12"}
+}
+
+
+Send
+
+
+
+6 delete a task:
+
+Method: DELETE
+
+URL = http://127.0.0.1:8000/tasks/2/
+
+
+I choose to delete task 2
+Send 
+
 
 Future Improvements
 
@@ -134,9 +292,6 @@ Researching and applying concepts immediately is an effective way to learn and g
 
 Consistent effort and perseverance lead to tangible results.
 
-License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 Contact
 
