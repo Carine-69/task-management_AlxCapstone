@@ -1,1 +1,1 @@
-web: gunicorn TaskManager.wsgi --log-file -
+web: gunicorn TaskManager.wsgi:application
