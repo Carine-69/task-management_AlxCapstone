@@ -9,6 +9,11 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+import dj_database_url
 import os
 import django_heroku
 from pathlib import Path
@@ -26,7 +31,7 @@ SECRET_KEY = 'django-insecure-x$$k&i4ao*gw37+f#^sgd^kx=^s@z!uk&-5$x676i(d&c5^igu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['taskManager.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'taskManager.herokuapp.com','localhost']
 
 
 # Application definition
@@ -80,10 +85,15 @@ WSGI_APPLICATION = 'TaskManager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'My_Tasks',
+        'USER': 'carine_umugabekazi',
+        'PASSWORD': 'Carine@2003',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
