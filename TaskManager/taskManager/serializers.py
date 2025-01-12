@@ -27,4 +27,6 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
     def create(self, validated_data):
-        return Task.objects.create(user=self.context['request'].user, **validated_data)
+        user = self.context['request'].user
+        validated_data.pop('user', None)
+        return Task.objects.create(user=user, **validated_data)
